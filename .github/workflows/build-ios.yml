@@ -22,27 +22,28 @@ jobs:
       - name: Install Dependencies
         run: npm install --legacy-peer-deps
 
-      - name: Build Web Bundle & Sync iOS
+      - name: Build Web Bundle & Regenerate iOS Platform
         run: |
           npm run build
-          npx cap add ios || true
+          rm -rf ios
+          npx cap add ios
           npx cap sync ios
 
-      - name: Archive iOS App & Package IPA
+      - name: Compile iOS App with xcodebuild
         run: |
           cd ios/App
-          xcodebuild archive \
-                     -project App.xcodeproj \
+          xcodebuild -project App.xcodeproj \
                      -scheme App \
-                     -destination 'generic/platform=iOS' \
-                     -archivePath build/App.xcarchive \
-                     -skipPackagePluginValidation \
+                     -configuration Release \
+                     -sdk iphonesimulator \
+                     -derivedDataPath build \
                      CODE_SIGNING_ALLOWED=NO \
                      CODE_SIGN_IDENTITY="" \
-                     CODE_SIGNING_REQUIRED=NO
+                     CODE_SIGNING_REQUIRED=NO \
+                     build
 
           mkdir -p ../../Payload
-          cp -r build/App.xcarchive/Products/Applications/App.app ../../Payload/
+          find build -name "*.app" -exec cp -r {} ../../Payload/ \;
           cd ../..
           ls -la Payload/
           zip -r BunnyOS-iOS.ipa Payload
