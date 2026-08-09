@@ -28,27 +28,21 @@ jobs:
           npx cap add ios || true
           npx cap sync ios
 
-      - name: Resolve Swift Packages
-        run: |
-          cd ios/App/CapApp-SPM
-          swift package resolve
-
-      - name: Compile iOS App & Package IPA
+      - name: Archive iOS App & Package IPA
         run: |
           cd ios/App
-          xcodebuild -project App.xcodeproj \
-                     -target App \
-                     -configuration Release \
-                     -sdk iphonesimulator \
-                     -derivedDataPath build \
+          xcodebuild archive \
+                     -project App.xcodeproj \
+                     -scheme App \
+                     -destination 'generic/platform=iOS' \
+                     -archivePath build/App.xcarchive \
                      -skipPackagePluginValidation \
                      CODE_SIGNING_ALLOWED=NO \
                      CODE_SIGN_IDENTITY="" \
-                     CODE_SIGNING_REQUIRED=NO \
-                     build
+                     CODE_SIGNING_REQUIRED=NO
 
           mkdir -p ../../Payload
-          find build -name "*.app" -exec cp -r {} ../../Payload/ \;
+          cp -r build/App.xcarchive/Products/Applications/App.app ../../Payload/
           cd ../..
           ls -la Payload/
           zip -r BunnyOS-iOS.ipa Payload
