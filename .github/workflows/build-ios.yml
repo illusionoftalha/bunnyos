@@ -45,11 +45,12 @@ jobs:
                      CODE_SIGNING_ALLOWED=NO \
                      CODE_SIGN_IDENTITY="" \
                      CODE_SIGNING_REQUIRED=NO \
-                     clean build
+                     build
 
           mkdir -p ../../Payload
           find build -name "*.app" -exec cp -r {} ../../Payload/ \;
           cd ../..
+          ls -la Payload/
           zip -r BunnyOS-iOS.ipa Payload
 
       - name: Upload iOS IPA Artifact
