@@ -1,0 +1,49 @@
+.custom-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  background-color: #ff1493;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  pointer-events: none !important;
+  z-index: 2147483647 !important;
+  box-shadow: 0 0 12px #ff1493, 0 0 4px #ffffff;
+}
+
+.custom-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  pointer-events: none !important;
+  z-index: 2147483646 !important;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(255, 20, 147, 0.6);
+  background: rgba(255, 105, 180, 0.15);
+  box-shadow: 0 0 12px rgba(255, 105, 180, 0.4);
+}
+
+.cursor-text {
+  font-family: var(--font-sans);
+  font-size: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--color-deep-pink);
+  margin-left: 2px; /* optical alignment */
+  filter: blur(0px); /* keep text sharp */
+}
+
+body {
+  cursor: none;
+}
+
+a, button, .hover-target, .canvas-image-container {
+  cursor: none;
+}

@@ -1,0 +1,39 @@
+.marquee-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0; /* behind everything */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10vh;
+  opacity: 0.15; /* Very subtle */
+}
+
+.marquee-track {
+  display: flex;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.marquee-text {
+  font-size: 8rem;
+  font-weight: 800;
+  color: var(--color-deep-pink);
+  padding: 0 2rem;
+  font-family: var(--font-primary);
+  text-transform: uppercase;
+  letter-spacing: -3px;
+  -webkit-text-stroke: 2px var(--color-deep-pink);
+  color: transparent;
+}
+
+@media (max-width: 768px) {
+  .marquee-text {
+    font-size: 4rem;
+  }
+}

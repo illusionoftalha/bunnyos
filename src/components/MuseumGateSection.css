@@ -1,0 +1,186 @@
+.museum-gate-section {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-top: 5rem;
+  /* Background removed so it inherits the site's beautiful animated pink gradient */
+}
+
+.gate-content-behind {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+  pointer-events: none; /* Only clickable when doors open */
+}
+
+.museum-gate-section:hover .gate-content-behind {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.gate-ambient-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 100vw;
+  max-width: 1200px;
+  max-height: 1200px;
+  background: radial-gradient(circle, rgba(255, 105, 180, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.floating-decor {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.decor-1 { top: 20%; left: 15%; }
+.decor-2 { top: 75%; left: 25%; }
+.decor-3 { top: 25%; right: 15%; }
+.decor-4 { top: 70%; right: 20%; }
+
+.gate-title {
+  position: relative;
+  z-index: 2;
+  font-size: 6rem;
+  color: #ff69b4;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 30px rgba(255, 105, 180, 0.8);
+}
+
+.gate-subtitle {
+  position: relative;
+  z-index: 2;
+  font-size: 1.8rem;
+  color: #ffb6c1;
+  margin-bottom: 4rem;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+}
+
+.gate-unlock-btn {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px 50px;
+  background: rgba(255, 105, 180, 0.2);
+  border: 2px solid rgba(255, 105, 180, 0.5);
+  border-radius: 50px;
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 0 30px rgba(255, 105, 180, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.gate-unlock-btn:hover {
+  background: rgba(255, 105, 180, 0.4);
+  border-color: #ffb6c1;
+}
+
+.key-icon {
+  animation: pulse-heart 2s ease-in-out infinite;
+}
+
+@keyframes pulse-heart {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* THE MASSIVE DOUBLE DOORS */
+.massive-doors-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 5;
+  display: flex;
+  pointer-events: none; /* Lets you hover over the whole section to trigger, but the doors themselves catch hover */
+}
+
+.massive-door {
+  width: 50vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.15); /* More frosted white to contrast with pink background */
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+  pointer-events: auto; /* Catch mouse to keep doors open */
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.massive-door.left-door {
+  border-right: 2px solid rgba(255, 255, 255, 0.6);
+  box-shadow: inset -20px 0 50px rgba(255, 255, 255, 0.1);
+}
+
+.massive-door.right-door {
+  border-left: none;
+  box-shadow: inset 20px 0 50px rgba(255, 255, 255, 0.1);
+}
+
+.door-seam-glow {
+  position: absolute;
+  right: -20px;
+  top: 0;
+  width: 40px;
+  height: 100%;
+  background: radial-gradient(ellipse at center, rgba(255, 105, 180, 0.5) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.door-handle {
+  position: absolute;
+  width: 12px;
+  height: 120px;
+  background: rgba(255, 182, 193, 0.9);
+  border-radius: 6px;
+  box-shadow: 0 0 30px rgba(255, 105, 180, 0.8);
+}
+
+.left-handle {
+  right: 30px;
+}
+
+.right-handle {
+  left: 30px;
+}
+
+/* Hovering ANYWHERE in the section opens the doors */
+.museum-gate-section:hover .massive-door.left-door {
+  transform: translateX(-100%);
+}
+
+.museum-gate-section:hover .massive-door.right-door {
+  transform: translateX(100%);
+}

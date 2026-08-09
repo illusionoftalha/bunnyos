@@ -1,0 +1,2811 @@
+/* BunnyOS 98 - Retro Desktop CSS */
+
+.bunnyos-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999999;
+  background-image: url('/bougainvillea_wallpaper.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  font-family: 'MS Sans Serif', 'Tahoma', sans-serif;
+  overflow: hidden;
+  user-select: none;
+  cursor: default !important;
+}
+
+.bunnyos-overlay * {
+  cursor: default !important;
+}
+
+.bunnyos-overlay input[type="text"],
+.bunnyos-overlay input[type="password"],
+.bunnyos-overlay textarea {
+  cursor: text !important;
+}
+
+.bunnyos-overlay button,
+.bunnyos-overlay a,
+.bunnyos-overlay .desktop-icon,
+.bunnyos-overlay .win98-btn,
+.bunnyos-overlay .start-menu-item,
+.bunnyos-overlay .win98-title-bar,
+.bunnyos-overlay .win98-resize-handle,
+.bunnyos-overlay .msn-emo-btn {
+  cursor: pointer !important;
+}
+
+/* Authentic Win98 CRT Dither & Scanline Overlay */
+.bunnyos-overlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    rgba(18, 16, 26, 0) 50%, 
+    rgba(0, 0, 0, 0.22) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.03),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.03)
+  );
+  background-size: 100% 3px, 6px 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Subtle Vignette & Nostalgic Bloom Filter */
+.bunnyos-overlay::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Terminal Boot Screen */
+.terminal-boot-screen {
+  width: 100%;
+  height: 100%;
+  background-color: #050505;
+  color: #00ff00;
+  font-family: 'Courier New', Courier, monospace;
+  padding: 30px;
+  box-sizing: border-box;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: hidden;
+  position: relative;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.6);
+  z-index: 10;
+}
+
+.terminal-boot-header {
+  color: #ffffff;
+  font-weight: bold;
+  border-bottom: 1px solid #00ff00;
+  padding-bottom: 8px;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.terminal-boot-log {
+  white-space: pre-wrap;
+  flex: 1;
+}
+
+/* Desktop Workspace */
+.desktop-workspace {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 42px);
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 22px;
+  z-index: 5;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.25) 140px, transparent 320px);
+}
+
+.desktop-icon {
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 8px 4px;
+  border-radius: 6px;
+  background: transparent;
+  border: 1px transparent solid;
+  transition: all 0.15s ease;
+}
+
+.desktop-icon:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px dotted rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(4px);
+}
+
+.desktop-icon-symbol {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.8));
+}
+
+.desktop-icon-label {
+  color: #ffffff;
+  font-size: 11px;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.95), 0 0 8px rgba(0, 0, 0, 0.9);
+  font-weight: 700;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  line-height: 1.2;
+}
+
+/* Windows 98 Window Container */
+.win98-window {
+  position: absolute;
+  background: #fdf0f5;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #ffb6c1;
+  border-bottom: 2px solid #ffb6c1;
+  box-shadow: 4px 8px 25px rgba(255, 105, 180, 0.35);
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  min-height: 200px;
+  resize: both;
+  overflow: hidden;
+  z-index: 100;
+}
+
+.win98-window.focused {
+  z-index: 500;
+}
+
+.win98-window.maximized {
+  left: 0 !important;
+  top: 0 !important;
+  width: 100% !important;
+  height: calc(100% - 36px) !important;
+  transform: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+}
+
+.win98-resize-handle {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 14px;
+  height: 14px;
+  cursor: nwse-resize;
+  z-index: 1000;
+  background: linear-gradient(135deg, transparent 50%, #ff69b4 50%);
+  border-right: 2px solid #ff1493;
+  border-bottom: 2px solid #ff1493;
+}
+
+.win98-title-bar {
+  background: linear-gradient(90deg, #ff1493 0%, #ff69b4 60%, #ffb6c1 100%);
+  padding: 4px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: move;
+}
+
+.win98-title-bar.unfocused {
+  background: linear-gradient(90deg, #808080 0%, #b5b5b5 100%);
+}
+
+.win98-title-text {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.win98-controls {
+  display: flex;
+  gap: 3px;
+}
+
+.win98-controls .win98-btn {
+  width: 16px !important;
+  height: 14px !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.win98-btn {
+  width: auto;
+  height: auto;
+  min-width: max-content;
+  background: #c0c0c0;
+  border-top: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #404040;
+  border-bottom: 1px solid #404040;
+  font-size: 11px;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 3px 8px;
+  line-height: 1.2;
+  box-sizing: border-box;
+  font-family: Tahoma, 'MS Sans Serif', sans-serif;
+  white-space: nowrap;
+}
+
+.win98-btn:active {
+  border-top: 1px solid #404040;
+  border-left: 1px solid #404040;
+  border-right: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+}
+
+.win98-window-body {
+  padding: 8px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  background: #c0c0c0;
+}
+
+/* Custom Win98 Smooth Mouse Scrollbars */
+.bunnyos-overlay ::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+  background: #dfdfdf;
+}
+
+.bunnyos-overlay ::-webkit-scrollbar-thumb {
+  background: #c0c0c0;
+  border-top: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #404040;
+  border-bottom: 1px solid #404040;
+}
+
+.bunnyos-overlay ::-webkit-scrollbar-thumb:hover {
+  background: #d0d0d0;
+}
+
+.bunnyos-overlay ::-webkit-scrollbar-track {
+  background: #e6e6e6;
+  border: 1px inset #808080;
+}
+
+
+/* App: BunnyPaint */
+.bunnypaint-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+}
+
+.bunnypaint-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  background: #f0e6ed;
+  padding: 6px 8px;
+  border: 1px inset #fff;
+  border-radius: 4px;
+}
+
+.color-picker-box {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #777;
+  border-radius: 2px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.bunnypaint-canvas-wrapper {
+  flex: 1;
+  width: 100%;
+  min-height: 200px;
+  border: 2px inset #707070;
+  background: #ffffff;
+  cursor: crosshair;
+  position: relative;
+  overflow: hidden;
+}
+
+.bunnypaint-canvas-wrapper canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+}
+
+/* App: BunnyAmp */
+.bunnyamp-container {
+  background: #111;
+  color: #00ff00;
+  font-family: monospace;
+  padding: 12px;
+  border: 2px inset #404040;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bunnyamp-display {
+  background: #000;
+  border: 1px solid #00ff00;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bunnyamp-track-title {
+  color: #00ff00;
+  font-size: 13px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.bunnyamp-visualizer-canvas {
+  width: 100%;
+  height: 40px;
+  background: #051505;
+}
+
+.bunnyamp-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+/* App: BhonduBot Chat */
+.bhondu-chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #ffffff;
+  border: 2px inset #707070;
+}
+
+.bhondu-chat-messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.chat-bubble {
+  max-width: 80%;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.chat-bubble.bot {
+  background: #e6f2ff;
+  border: 1px solid #b3d9ff;
+  align-self: flex-start;
+  color: #003366;
+}
+
+.chat-bubble.user {
+  background: #ffecf2;
+  border: 1px solid #ffccdd;
+  align-self: flex-end;
+  color: #990033;
+}
+
+.bhondu-chat-input-bar {
+  display: flex;
+  border-top: 1px solid #c0c0c0;
+  padding: 6px;
+  background: #f0f0f0;
+  gap: 6px;
+}
+
+.bhondu-chat-input {
+  flex: 1;
+  border: 1px inset #707070;
+  padding: 4px 8px;
+  font-family: inherit;
+  font-size: 12px;
+}
+
+/* Taskbar */
+.win98-taskbar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 42px;
+  background: #c0c0c0;
+  border-top: 2px solid #ffffff;
+  display: flex;
+  align-items: center;
+  padding: 3px 6px;
+  box-sizing: border-box;
+  justify-content: space-between;
+  z-index: 99999;
+}
+
+.start-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: #c0c0c0;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #404040;
+  border-bottom: 2px solid #404040;
+  font-weight: bold;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.start-btn:active, .start-btn.active {
+  border-top: 2px solid #404040;
+  border-left: 2px solid #404040;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+}
+
+.taskbar-apps {
+  flex: 1;
+  display: flex;
+  gap: 6px;
+  margin: 0 10px;
+  overflow-x: auto;
+}
+
+.taskbar-item {
+  padding: 4px 12px;
+  background: #c0c0c0;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #404040;
+  border-bottom: 2px solid #404040;
+  font-size: 11px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.taskbar-item.active {
+  border-top: 2px solid #404040;
+  border-left: 2px solid #404040;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  background: #e0e0e0;
+  font-weight: bold;
+}
+
+.system-tray {
+  border-top: 1px solid #404040;
+  border-left: 1px solid #404040;
+  border-right: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+  padding: 4px 10px;
+  font-size: 11px;
+  color: #000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Start Menu Modal */
+.start-menu {
+  position: absolute;
+  bottom: 42px;
+  left: 2px;
+  width: 220px;
+  background: #c0c0c0;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #404040;
+  border-bottom: 2px solid #404040;
+  box-shadow: 4px 4px 10px rgba(0,0,0,0.4);
+  display: flex;
+  z-index: 100000;
+}
+
+.start-menu-banner {
+  width: 28px;
+  background: linear-gradient(180deg, #000080 0%, #1084d0 100%);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 10px 4px;
+  letter-spacing: 2px;
+}
+
+.start-menu-items {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 4px 0;
+}
+
+.start-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  color: #000;
+}
+
+.start-menu-item:hover {
+  background: #000080;
+  color: #ffffff;
+}
+
+.start-menu-divider {
+  height: 1px;
+  background: #808080;
+  border-bottom: 1px solid #ffffff;
+  margin: 4px 2px;
+}
+
+/* Minimalist Bunny Racer UI Styles */
+.arcade-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #12121c;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.arcade-hud-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #1a1a28;
+  border-bottom: 1px solid rgba(255, 182, 193, 0.2);
+  padding: 8px 16px;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.hud-title {
+  color: #ffffff;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+.hud-badge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #ffd700;
+  font-weight: bold;
+}
+
+.hud-badge.pink {
+  color: #ff69b4;
+}
+
+.arcade-canvas-area {
+  flex: 1;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0d0d16;
+}
+
+.arcade-overlay-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 20, 0.82);
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  z-index: 20;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.arcade-overlay-card {
+  background: #1c1c2b;
+  border: 1px solid #ffb6c1;
+  border-radius: 12px;
+  padding: 24px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+  max-width: 320px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.arcade-title-glow {
+  font-size: 22px;
+  font-weight: bold;
+  color: #ff69b4;
+  letter-spacing: 1px;
+}
+
+.arcade-start-btn {
+  background: #ff69b4;
+  color: #ffffff;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 24px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.arcade-start-btn:hover {
+  background: #ff1493;
+  transform: translateY(-1px);
+}
+
+.arcade-controls-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 12px;
+  background: #181826;
+  border-top: 1px solid rgba(255, 182, 193, 0.15);
+}
+
+.arcade-steer-btn {
+  flex: 1;
+  background: #252538;
+  color: #ffffff;
+  border: 1px solid rgba(255, 182, 193, 0.4);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-weight: 600;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.arcade-steer-btn:hover {
+  background: #32324a;
+  border-color: #ff69b4;
+}
+
+.arcade-steer-btn:active {
+  transform: translateY(1px);
+}
+
+/* Password Protected Poetry Vault Styles */
+.poetry-vault-lock-screen {
+  height: 100%;
+  width: 100%;
+  background: #12121c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.vault-lock-card {
+  background: #1c1c2b;
+  border: 1px solid #ffb6c1;
+  border-radius: 12px;
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 290px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  color: #ffffff;
+}
+
+.vault-lock-card h3 {
+  margin: 0;
+  color: #ff69b4;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.vault-lock-card p {
+  margin: 0;
+  font-size: 12px;
+  color: #a0a0c0;
+}
+
+.vault-input {
+  width: 100%;
+  padding: 9px 12px;
+  background: #252538;
+  border: 1px solid rgba(255, 182, 193, 0.4);
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 13px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+.vault-input:focus {
+  border-color: #ff69b4;
+}
+
+.vault-unlock-btn {
+  width: 100%;
+  padding: 9px;
+  background: #ff69b4;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.vault-unlock-btn:hover {
+  background: #ff1493;
+  transform: translateY(-1px);
+}
+
+.vault-error {
+  color: #ff4365;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.poetry-vault-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.poetry-sidebar {
+  width: 180px;
+  background: #f7eaf2;
+  border-right: 2px solid #ffb6c1;
+  display: flex;
+  flex-direction: column;
+}
+
+.poetry-sidebar-header {
+  padding: 8px 10px;
+  background: #f0d6e6;
+  border-bottom: 1px solid #ffb6c1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: bold;
+  color: #666;
+}
+
+.poetry-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.poetry-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 6px;
+  background: #ffffff;
+  border: 1px solid #f0c0d8;
+  cursor: pointer;
+  font-size: 12px;
+  color: #333;
+  transition: all 0.15s ease;
+}
+
+.poetry-item:hover {
+  background: #fff0f5;
+  border-color: #ff69b4;
+}
+
+.poetry-item.active {
+  background: #ff69b4;
+  color: #ffffff;
+  border-color: #ff1493;
+  font-weight: bold;
+}
+
+.poetry-item-title {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.poetry-delete-btn {
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  opacity: 0.7;
+  padding: 2px;
+}
+
+.poetry-delete-btn:hover {
+  opacity: 1;
+}
+
+.poetry-editor-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  background: #fffdfb;
+  overflow: hidden;
+}
+
+.poetry-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: #faf0f5;
+  border-bottom: 1px solid #ffb6c1;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.poetry-title-input {
+  flex: 1;
+  font-size: 15px;
+  font-weight: bold;
+  border: 1px solid #ffb6c1;
+  border-radius: 4px;
+  padding: 6px 10px;
+  outline: none;
+  color: #333;
+  background: #ffffff;
+}
+
+.poetry-title-input:focus {
+  border-color: #ff1493;
+}
+
+.poetry-textarea {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  padding: 18px 24px;
+  box-sizing: border-box;
+  font-size: 15px;
+  line-height: 1.8;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  color: #2c2c2c;
+  background-color: #fffdfb;
+  background-image: linear-gradient(#e8e8e8 1px, transparent 1px);
+  background-size: 100% 28px;
+  border: none;
+  outline: none;
+  resize: none;
+  overflow-y: auto !important;
+}
+
+/* Custom Minimalist Pink Scrollbars */
+.poetry-textarea::-webkit-scrollbar,
+.poetry-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.poetry-textarea::-webkit-scrollbar-track,
+.poetry-list::-webkit-scrollbar-track {
+  background: #f4e8f0;
+}
+
+.poetry-textarea::-webkit-scrollbar-thumb,
+.poetry-list::-webkit-scrollbar-thumb {
+  background: #ff69b4;
+  border-radius: 4px;
+}
+
+.poetry-textarea::-webkit-scrollbar-thumb:hover,
+.poetry-list::-webkit-scrollbar-thumb:hover {
+  background: #ff1493;
+}
+
+.poetry-statusbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 12px;
+  background: #f7eaf2;
+  border-top: 1px solid #ffb6c1;
+  font-size: 11px;
+  color: #777;
+  font-family: monospace;
+  flex-shrink: 0;
+}
+
+/* Aesthetic Mini Cassette Player Desktop Widget */
+.cassette-widget {
+  position: absolute;
+  top: 70px;
+  right: 30px;
+  width: 300px;
+  background: rgba(255, 240, 245, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(255, 105, 180, 0.5);
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(255, 20, 147, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  padding: 12px;
+  z-index: 90;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  user-select: none;
+}
+
+.cassette-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #ff1493;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.cassette-header-btn {
+  background: transparent;
+  border: none;
+  color: #ff1493;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cassette-header-btn:hover {
+  background: rgba(255, 20, 147, 0.1);
+}
+
+/* Cassette Body & Window */
+.cassette-window {
+  width: 100%;
+  height: 90px;
+  background: linear-gradient(135deg, #1c1a24, #2a2233);
+  border-radius: 8px;
+  border: 1.5px solid #ffb6c1;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+/* Tape Reels */
+.cassette-reel {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3px solid #ff1493;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.cassette-reel-spokes {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cassette-reel-spokes::before,
+.cassette-reel-spokes::after {
+  content: '';
+  position: absolute;
+  background: #ff1493;
+}
+
+.cassette-reel-spokes::before {
+  width: 4px;
+  height: 36px;
+  border-radius: 2px;
+}
+
+.cassette-reel-spokes::after {
+  width: 36px;
+  height: 4px;
+  border-radius: 2px;
+}
+
+.cassette-reel-center {
+  width: 14px;
+  height: 14px;
+  background: #1c1a24;
+  border-radius: 50%;
+  z-index: 2;
+  border: 2px solid #ffffff;
+}
+
+.cassette-spin {
+  animation: reelSpin 3s linear infinite;
+}
+
+@keyframes reelSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Middle Tape Window */
+.cassette-tape-middle {
+  flex: 1;
+  height: 24px;
+  margin: 0 10px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 4px;
+  border: 1px solid rgba(255, 182, 193, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.cassette-spectrum {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 16px;
+}
+
+.cassette-spec-bar {
+  width: 3px;
+  background: #ff69b4;
+  border-radius: 2px;
+  transition: height 0.1s ease;
+}
+
+/* Track Metadata & Controls */
+.cassette-meta {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cassette-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #4a154b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.cassette-seekbar-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  color: #888;
+  font-family: monospace;
+}
+
+.cassette-seekbar {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 5px;
+  background: #ffd1dc;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+}
+
+.cassette-seekbar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff1493;
+  cursor: pointer;
+  box-shadow: 0 0 4px rgba(255, 20, 147, 0.5);
+}
+
+.cassette-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+  padding: 0 4px;
+}
+
+.cassette-btn {
+  background: #ffffff;
+  border: 1px solid #ffb6c1;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff1493;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(255, 20, 147, 0.15);
+  transition: all 0.15s ease;
+}
+
+.cassette-btn:hover {
+  background: #fff0f5;
+  transform: scale(1.08);
+}
+
+.cassette-btn.play-btn {
+  width: 38px;
+  height: 38px;
+  background: #ff1493;
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 4px 10px rgba(255, 20, 147, 0.3);
+}
+
+.cassette-btn.play-btn:hover {
+  background: #ff69b4;
+  transform: scale(1.1);
+}
+
+.cassette-vol-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cassette-vol-slider {
+  width: 45px;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  background: #ffd1dc;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+.cassette-vol-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ff1493;
+  cursor: pointer;
+}
+
+/* Taskbar Walking Pixel Cat Mascot */
+.taskbar-cat-widget {
+  position: absolute;
+  bottom: 38px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+  pointer-events: none;
+  cursor: default;
+  transition: left 0.1s linear;
+}
+
+.cat-speech-bubble {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border: 1.5px solid #ff1493;
+  border-radius: 12px;
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #4a154b;
+  box-shadow: 0 4px 15px rgba(255, 20, 147, 0.25);
+  margin-bottom: 6px;
+  position: relative;
+  max-width: 190px;
+  text-align: center;
+  white-space: pre-wrap;
+  animation: bubblePop 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.cat-speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #ff1493;
+}
+
+@keyframes bubblePop {
+  0% { transform: scale(0.7); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.cat-sprite-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease;
+}
+
+.cat-sprite-img {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.cat-walking {
+  animation: walkBob 0.35s ease-in-out infinite alternate;
+}
+
+@keyframes walkBob {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(-4px) rotate(2deg); }
+}
+
+.cat-heart-particle {
+  position: absolute;
+  color: #ff1493;
+  font-size: 16px;
+  pointer-events: none;
+  animation: floatHeart 0.8s ease-out forwards;
+}
+
+@keyframes floatHeart {
+  0% { opacity: 1; transform: translateY(0) scale(0.8); }
+  100% { opacity: 0; transform: translateY(-32px) scale(1.3); }
+}
+
+.cat-action-menu {
+  position: absolute;
+  bottom: 84px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid #ffb6c1;
+  border-radius: 8px;
+  padding: 4px;
+  display: flex;
+  gap: 4px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.mascot-action-btn {
+  background: #fff0f5;
+  border: 1px solid #ffb6c1;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 10px;
+  font-weight: bold;
+  color: #ff1493;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  transition: all 0.15s ease;
+}
+
+.mascot-action-btn:hover {
+  background: #ff1493;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   Bunny Messenger 98 (Retro MSN/AIM Chat) Styles
+   ========================================================================== */
+
+.msn-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: #f0f4f8;
+  font-family: Tahoma, 'MS Sans Serif', Arial, sans-serif;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.msn-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: linear-gradient(180deg, #e3f0ff 0%, #c4dcf5 100%);
+  border-bottom: 1px solid #9fbcdb;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.msn-user-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.msn-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  border: 1px solid #7da2ce;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  box-shadow: inset 1px 1px 2px rgba(0,0,0,0.1);
+  flex-shrink: 0;
+}
+
+.msn-avatar.bareera {
+  background: #fff0f5;
+  border-color: #ffb6c1;
+}
+
+.msn-user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.msn-username {
+  font-weight: bold;
+  font-size: 13px;
+  color: #002266;
+}
+
+.msn-status-badge {
+  font-size: 10px;
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+.msn-status-input {
+  border: 1px solid #a0b8d0;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 2px;
+  color: #333;
+  width: 180px;
+  outline: none;
+}
+
+.msn-profile-switcher {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.msn-role-buttons {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.msn-role-buttons .win98-btn {
+  height: 22px !important;
+  width: auto !important;
+  padding: 2px 8px !important;
+  font-size: 10px !important;
+}
+
+.win98-btn.active-role {
+  background: #000080 !important;
+  color: #ffffff !important;
+  font-weight: bold !important;
+  border-top: 1px solid #000 !important;
+  border-left: 1px solid #000 !important;
+  border-right: 1px solid #fff !important;
+  border-bottom: 1px solid #fff !important;
+}
+
+.msn-sql-info {
+  background: #fffbe6;
+  border-bottom: 1px solid #ffe58f;
+  padding: 8px 12px;
+  font-size: 11px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.msn-sql-textarea {
+  width: 100%;
+  font-family: monospace;
+  font-size: 9px;
+  background: #222;
+  color: #00ff00;
+  border: 1px solid #444;
+  padding: 6px;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+.msn-chat-log {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 12px;
+  background: #ffffff;
+  border: 1px inset #808080;
+  margin: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 180px;
+}
+
+
+.msn-welcome-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #555;
+  background: #f7f9fc;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px dashed #d0dbe5;
+}
+
+.msn-msg-row {
+  display: flex;
+  gap: 8px;
+  max-width: 85%;
+  align-items: flex-start;
+}
+
+.msn-msg-row.outgoing {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.msn-msg-row.incoming {
+  align-self: flex-start;
+}
+
+.msn-msg-avatar {
+  font-size: 16px;
+  background: #f0f0f0;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  flex-shrink: 0;
+}
+
+.msn-msg-bubble {
+  background: #eef5fc;
+  border: 1px solid #b2cce5;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 11px;
+  color: #222;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+
+.msn-msg-row.outgoing .msn-msg-bubble {
+  background: #fff0f5;
+  border-color: #ffb6c1;
+}
+
+.msn-msg-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 3px;
+  font-size: 9px;
+}
+
+.msn-msg-sender {
+  font-weight: bold;
+  color: #000080;
+}
+
+.msn-msg-row.outgoing .msn-msg-sender {
+  color: #ff1493;
+}
+
+.msn-msg-time {
+  color: #888;
+}
+
+.msn-msg-content {
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.msn-msg-row.nudge-row .msn-msg-bubble {
+  background: #fff1f0;
+  border: 1px solid #ff4d4f;
+  animation: nudgePulse 0.4s ease-in-out infinite alternate;
+}
+
+.msn-nudge-text {
+  font-weight: bold;
+  color: #d9363e;
+}
+
+@keyframes nudgePulse {
+  0% { transform: scale(0.98); }
+  100% { transform: scale(1.02); }
+}
+
+.msn-emoticon-bar {
+  display: flex;
+  align-items: center;
+  padding: 6px 10px;
+  background: #e6eff8;
+  border-top: 1px solid #c0d4e8;
+  gap: 6px;
+  overflow-x: auto;
+}
+
+.msn-emo-btn {
+  background: #ffffff;
+  border: 1px solid #a0b8d0;
+  border-radius: 3px;
+  padding: 2px 6px;
+  font-size: 11px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.1s ease;
+}
+
+.msn-emo-btn:hover {
+  background: #ff69b4;
+  color: #fff;
+  border-color: #ff1493;
+}
+
+.msn-input-area {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  background: #d8e5f3;
+  border-top: 1px solid #9fbcdb;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.msn-text-input {
+  flex: 1;
+  min-width: 0;
+  height: 28px;
+  border: 1px inset #808080;
+  padding: 4px 8px;
+  font-size: 12px;
+  outline: none;
+  background: #fff;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+.msn-nudge-btn {
+  height: 28px !important;
+  width: auto !important;
+  color: #d9363e !important;
+  font-weight: bold !important;
+  padding: 2px 10px !important;
+  font-size: 11px !important;
+  flex-shrink: 0;
+}
+
+.msn-send-btn {
+  height: 28px !important;
+  width: auto !important;
+  padding: 2px 14px !important;
+  font-weight: bold !important;
+  background: linear-gradient(to bottom, #f0f0f0, #d4d0c8) !important;
+  flex-shrink: 0;
+}
+
+/* Retro MSN Messenger 98 Sign-In Screen */
+.msn-signin-overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(135deg, #e4effe 0%, #c4dbf6 100%);
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.msn-signin-box {
+  width: 320px;
+  background: #f0f4fc;
+  border: 2px solid #0055ea;
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(0, 50, 150, 0.25), inset 0 1px 0 #ffffff;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.msn-signin-banner {
+  background: linear-gradient(to right, #0055ea, #0088ff);
+  padding: 12px 16px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 2px solid #0033aa;
+}
+
+.msn-signin-logo {
+  font-size: 24px;
+}
+
+.msn-signin-title {
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+}
+
+.msn-signin-subtitle {
+  font-size: 10px;
+  opacity: 0.85;
+}
+
+.msn-signin-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.msn-signin-label {
+  font-size: 11px;
+  font-weight: bold;
+  color: #003388;
+}
+
+.msn-account-tabs {
+  display: flex;
+  gap: 8px;
+}
+
+.msn-account-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px;
+  border: 2px outset #ffffff;
+  background: #e6f0fa;
+  font-size: 12px;
+  font-weight: bold;
+  color: #003366;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+}
+
+.msn-account-btn.selected {
+  background: #0055ea;
+  color: #ffffff;
+  border: 2px inset #0033aa;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.msn-password-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.msn-password-input {
+  width: 100%;
+  height: 30px;
+  border: 2px inset #7f9db9;
+  padding: 4px 8px;
+  font-size: 13px;
+  border-radius: 3px;
+  box-sizing: border-box;
+  background: #ffffff;
+}
+
+.msn-password-hint {
+  font-size: 10px;
+  color: #666666;
+  font-style: italic;
+}
+
+.msn-signin-error {
+  background: #fff0f0;
+  border: 1px solid #ff4d4d;
+  color: #cc0000;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.msn-signin-submit {
+  height: 32px !important;
+  width: 100% !important;
+  background: linear-gradient(to bottom, #3388ff, #0055ea) !important;
+  color: #ffffff !important;
+  font-weight: bold !important;
+  font-size: 13px !important;
+  border: 2px solid #0033aa !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  margin-top: 4px;
+}
+
+.msn-signin-submit:hover {
+  background: linear-gradient(to bottom, #4499ff, #0066ff) !important;
+}
+
+/* Retro Voice Note Player & Recording Bar */
+.msn-audio-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #e4effe;
+  border: 1px solid #7f9db9;
+  border-radius: 4px;
+  padding: 4px 8px;
+  margin-top: 4px;
+}
+
+.msn-audio-play-btn {
+  height: 24px !important;
+  font-size: 10px !important;
+  font-weight: bold !important;
+  padding: 1px 8px !important;
+  background: linear-gradient(to bottom, #ffffff, #d4d0c8) !important;
+}
+
+.msn-audio-eq {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 14px;
+}
+
+.msn-audio-eq span {
+  width: 3px;
+  height: 4px;
+  background: #0055ea;
+  border-radius: 1px;
+  transition: height 0.15s ease;
+}
+
+.msn-audio-eq.playing span:nth-child(1) { animation: msnEq 0.4s infinite alternate; }
+.msn-audio-eq.playing span:nth-child(2) { animation: msnEq 0.6s infinite alternate 0.1s; }
+.msn-audio-eq.playing span:nth-child(3) { animation: msnEq 0.3s infinite alternate 0.2s; }
+.msn-audio-eq.playing span:nth-child(4) { animation: msnEq 0.5s infinite alternate 0.05s; }
+
+@keyframes msnEq {
+  0% { height: 3px; background: #0055ea; }
+  100% { height: 14px; background: #ff1493; }
+}
+
+.msn-audio-badge {
+  font-size: 9px;
+  color: #666;
+  font-weight: bold;
+}
+
+.msn-recording-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff0f5;
+  border: 1px inset #ff69b4;
+  padding: 4px 10px;
+  flex: 1;
+  box-sizing: border-box;
+  font-size: 11px;
+  font-weight: bold;
+  color: #d9363e;
+  border-radius: 2px;
+}
+
+.msn-voice-btn {
+  height: 28px !important;
+  width: auto !important;
+  color: #0055ea !important;
+  font-weight: bold !important;
+  padding: 2px 8px !important;
+  font-size: 11px !important;
+  flex-shrink: 0;
+}
+
+/* Nudge Shake Screen Animation for BunnyOS */
+.bunnyos-overlay.nudge-shaking {
+  animation: msnScreenShake 0.6s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes msnScreenShake {
+  10%, 90% { transform: translate3d(-4px, 0, 0); }
+  20%, 80% { transform: translate3d(6px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-8px, 0, 0); }
+  40%, 60% { transform: translate3d(8px, 0, 0); }
+}
+
+/* Floating Desktop Launcher Button for BunnyOS */
+.bunnyos-floating-launcher {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: linear-gradient(135deg, #181828, #2a0845);
+  border: 2px outset #ff69b4;
+  border-radius: 30px;
+  color: #ffffff;
+  font-family: 'MS Sans Serif', Tahoma, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer !important;
+  box-shadow: 0 8px 24px rgba(255, 20, 147, 0.4), 0 0 15px rgba(0, 229, 255, 0.3);
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.bunnyos-floating-launcher:hover {
+  border-color: #00e5ff;
+  background: linear-gradient(135deg, #2a0845, #ff1493);
+}
+
+.bunnyos-floating-launcher .launcher-icon {
+  font-size: 16px;
+}
+
+.bunnyos-floating-launcher .launcher-text {
+  letter-spacing: 0.5px;
+  color: #fff;
+  text-shadow: 0 0 8px rgba(255, 105, 180, 0.8);
+}
+
+.bunnyos-floating-launcher .launcher-badge {
+  background: #00ff00;
+  color: #000;
+  font-size: 9px;
+  font-family: monospace;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  box-shadow: 0 0 8px #00ff00;
+}
+
+/* System Tray Win98 Balloon Notification */
+.win98-balloon-notification {
+  position: absolute;
+  bottom: 48px;
+  right: 12px;
+  background: #ffffcc;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+  padding: 10px 14px;
+  max-width: 260px;
+  z-index: 99999;
+  font-family: 'Tahoma', 'MS Sans Serif', sans-serif;
+  font-size: 11px;
+  color: #000;
+  cursor: pointer !important;
+  animation: balloonPopIn 0.3s ease-out;
+}
+
+@keyframes balloonPopIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.win98-balloon-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  color: #000080;
+  margin-bottom: 4px;
+  font-size: 11px;
+}
+
+.win98-balloon-close {
+  background: transparent;
+  border: none;
+  font-weight: bold;
+  font-size: 12px;
+  cursor: pointer !important;
+  color: #666;
+}
+
+.win98-balloon-close:hover {
+  color: #ff0000;
+}
+
+.win98-balloon-body {
+  font-size: 11px;
+  line-height: 1.3;
+  color: #222;
+}
+
+/* Wallpapers */
+.bunnyos-overlay.wallpaper-teal {
+  background-color: #008080 !important;
+  background-image: none !important;
+}
+
+.bunnyos-overlay.wallpaper-pinkgrid {
+  background-color: #ffb6c1 !important;
+  background-image: linear-gradient(rgba(255, 20, 147, 0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 20, 147, 0.15) 1px, transparent 1px) !important;
+  background-size: 24px 24px !important;
+}
+
+.bunnyos-overlay.wallpaper-matrix {
+  background-color: #050505 !important;
+  background-image: radial-gradient(rgba(0, 255, 0, 0.15) 1px, transparent 1px) !important;
+  background-size: 16px 16px !important;
+}
+
+.bunnyos-overlay.wallpaper-custom {
+  background-color: #1a1a2e !important;
+}
+
+
+.bunnyos-overlay.wallpaper-bougainvillea {
+  background-image: url('/bougainvillea_wallpaper.jpg') !important;
+  background-size: cover !important;
+  background-position: center center !important;
+}
+
+/* HeartSweeper Mini-Game Styles */
+.heartsweeper-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #c0c0c0;
+  padding: 10px;
+  border: 2px outset #ffffff;
+  font-family: 'MS Sans Serif', Tahoma, sans-serif;
+  user-select: none;
+}
+
+.heartsweeper-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background: #c0c0c0;
+  border: 2px inset #ffffff;
+  padding: 6px 10px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.heartsweeper-counter {
+  background: #000;
+  color: #ff0000;
+  font-family: 'Courier New', monospace;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border: 1px inset #808080;
+  min-width: 44px;
+  text-align: center;
+}
+
+.heartsweeper-face-btn {
+  width: 32px;
+  height: 32px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer !important;
+  background: #c0c0c0;
+  border: 2px outset #ffffff;
+}
+
+.heartsweeper-face-btn:active {
+  border: 2px inset #ffffff;
+}
+
+.heartsweeper-grid {
+  display: grid;
+  grid-template-columns: repeat(9, 26px);
+  grid-template-rows: repeat(9, 26px);
+  gap: 0;
+  border: 3px inset #ffffff;
+  background: #7b7b7b;
+}
+
+.heartsweeper-cell {
+  width: 26px;
+  height: 26px;
+  background: #c0c0c0;
+  border: 2px outset #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer !important;
+  box-sizing: border-box;
+}
+
+.heartsweeper-cell.revealed {
+  border: 1px solid #7b7b7b;
+  background: #bdbdbd;
+}
+
+.heartsweeper-cell.mine {
+  background: #ff4d4d;
+}
+
+/* MSN Mic Recorder Styles */
+.msn-mic-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  background: #f0f0f0;
+  border: 1px solid #bbb;
+  cursor: pointer !important;
+  transition: all 0.2s ease;
+}
+
+.msn-mic-btn.recording {
+  background: #ff4d4d;
+  color: #fff;
+  animation: pulseRecording 1s infinite alternate;
+}
+
+@keyframes pulseRecording {
+  from { box-shadow: 0 0 4px #ff0000; }
+  to { box-shadow: 0 0 12px #ff0000; }
+}
+
+/* Wallpaper Theme Classes */
+.bunnyos-overlay.wallpaper-bougainvillea {
+  background-image: url('/bougainvillea_wallpaper.jpg') !important;
+  background-size: cover !important;
+  background-position: center center !important;
+}
+
+.bunnyos-overlay.wallpaper-poppies {
+  background-image: url('/girly_poppies.jpg') !important;
+  background-size: cover !important;
+  background-position: center center !important;
+}
+
+.bunnyos-overlay.wallpaper-matrix,
+.bunnyos-overlay.wallpaper-pinkgrid,
+.bunnyos-overlay.wallpaper-teal {
+  background-image: none !important;
+}
+
+.bunnyos-overlay.wallpaper-teal {
+  background-color: #008080 !important;
+}
+
+/* Animated Y2K Cyber Pink Grid Wallpaper */
+.pink-grid-wallpaper-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, #0d001a 0%, #2a003b 55%, #59005c 100%);
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.pink-grid-perspective {
+  position: absolute;
+  bottom: 0;
+  left: -50%;
+  width: 200%;
+  height: 60%;
+  background-image: 
+    linear-gradient(90deg, rgba(255, 20, 147, 0.7) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255, 20, 147, 0.7) 1px, transparent 1px);
+  background-size: 50px 35px;
+  transform: perspective(300px) rotateX(60deg);
+  animation: movePinkGrid 3s linear infinite;
+}
+
+@keyframes movePinkGrid {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 35px; }
+}
+
+.pink-grid-horizon {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: linear-gradient(to bottom, #ff1493, #ff69b4);
+  box-shadow: 0 0 60px #ff1493, 0 0 120px #ff69b4;
+}
+
+/* ========================================== */
+/* ANDROID & MOBILE RESPONSIVE OPTIMIZATIONS  */
+/* ========================================== */
+
+/* Mobile Safe Areas for Android Status & Nav bars */
+.bunnyos-overlay {
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+  touch-action: manipulation;
+}
+
+@media (max-width: 768px) {
+  .desktop-grid {
+    grid-template-columns: repeat(auto-fill, minmax(75px, 1fr)) !important;
+    gap: 12px 8px !important;
+    padding: 12px !important;
+    max-height: calc(100vh - 45px) !important;
+    overflow-y: auto !important;
+  }
+
+  .desktop-icon {
+    width: 72px !important;
+    padding: 6px 4px !important;
+    touch-action: manipulation !important;
+  }
+
+  .desktop-icon img, .desktop-icon svg {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .desktop-icon span {
+    font-size: 11px !important;
+    line-height: 1.2 !important;
+    word-break: break-word !important;
+  }
+
+  /* Win98 Window Mobile Overrides */
+  .win98-window {
+    width: 96vw !important;
+    max-width: 96vw !important;
+    max-height: calc(100vh - 50px) !important;
+    top: 5px !important;
+    left: 2vw !important;
+    transform: none !important;
+    border-radius: 4px !important;
+  }
+
+  .win98-window-content {
+    max-height: calc(100vh - 90px) !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding: 8px !important;
+  }
+
+  /* Taskbar Mobile Adjustments */
+  .bunnyos-taskbar {
+    height: 42px !important;
+    padding: 2px 4px !important;
+  }
+
+  .start-btn {
+    height: 34px !important;
+    padding: 0 10px !important;
+    font-size: 12px !important;
+  }
+
+  .start-menu {
+    width: 85vw !important;
+    max-width: 280px !important;
+    bottom: 44px !important;
+    left: 2px !important;
+    z-index: 1000000 !important;
+  }
+
+  .taskbar-apps {
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .taskbar-app-item {
+    min-width: 80px !important;
+    max-width: 120px !important;
+    font-size: 11px !important;
+    padding: 2px 6px !important;
+  }
+
+  .system-tray {
+    padding: 0 6px !important;
+    font-size: 11px !important;
+  }
+
+  /* MSN Messenger Mobile Layout */
+  .msn-window {
+    width: 96vw !important;
+    height: calc(100vh - 60px) !important;
+  }
+
+  .msn-body {
+    flex-direction: column !important;
+  }
+
+  .msn-sidebar {
+    width: 100% !important;
+    height: 60px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+  }
+
+  /* Music Player Mobile Layout */
+  .winamp-player {
+    width: 96vw !important;
+  }
+}
+
+/* ========================================== */
+/* BUNNY PHONE OS - SMARTPHONE UI STYLES      */
+/* ========================================== */
+
+/* Smartphone Top Status Bar */
+.mobile-phone-status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 14px;
+  background: rgba(15, 10, 25, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #ffffff;
+  font-size: 11px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  border-bottom: 1px solid rgba(255, 105, 180, 0.2);
+  z-index: 9999;
+  position: relative;
+}
+
+.mobile-phone-logo {
+  font-weight: bold;
+  background: linear-gradient(90deg, #ff69b4, #ff1493);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.5px;
+}
+
+.mobile-clock {
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.mobile-status-right {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 10px;
+  color: #ffccd5;
+}
+
+/* Smartphone Bottom Phone Dock Bar */
+.mobile-bottom-phone-dock {
+  position: fixed;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90vw;
+  max-width: 380px;
+  height: 62px;
+  background: rgba(255, 240, 248, 0.65);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 10px 30px rgba(255, 20, 147, 0.25), 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 24px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 12px;
+  z-index: 9995;
+  box-sizing: border-box;
+}
+
+.mobile-dock-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  box-shadow: 0 4px 12px rgba(255, 20, 147, 0.35);
+  cursor: pointer !important;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.mobile-dock-icon:active {
+  transform: scale(0.92);
+  box-shadow: 0 2px 6px rgba(255, 20, 147, 0.2);
+}
+
+.mobile-dock-icon span {
+  font-size: 9px;
+  font-weight: 700;
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: 0.3px;
+}
+
+/* Smartphone Mobile Full-Screen App Cards */
+.mobile-app-card {
+  box-shadow: 0 0 40px rgba(0,0,0,0.4) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+}
+
+.mobile-app-header {
+  background: linear-gradient(90deg, #ff1493, #ff69b4) !important;
+  padding: 10px 14px !important;
+  height: 46px !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+.mobile-back-btn {
+  transition: background 0.15s ease;
+}
+
+.mobile-back-btn:active {
+  background: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* ========================================== */
+/* BUNNYDROID OS - ANDROID LAUNCHER STYLES    */
+/* ========================================== */
+
+.android-launcher-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Android Home Screen Container */
+.android-home-screen {
+  flex: 1;
+  padding: 12px 16px 80px 16px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Hero Clock Widget */
+.android-hero-widget {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+  padding: 16px 20px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(255, 20, 147, 0.15);
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.widget-clock {
+  font-size: 38px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1;
+}
+
+.widget-date {
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 4px;
+  opacity: 0.9;
+}
+
+.widget-quote {
+  font-size: 12px;
+  font-style: italic;
+  margin-top: 8px;
+  color: #ffe6f0;
+  font-weight: 500;
+}
+
+/* Music Widget */
+.android-music-widget {
+  background: linear-gradient(135deg, rgba(255, 20, 147, 0.8), rgba(255, 105, 180, 0.8));
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 16px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  color: #fff;
+  transition: transform 0.15s ease;
+}
+
+.android-music-widget:active {
+  transform: scale(0.98);
+}
+
+.music-widget-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.track-name {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.artist-name {
+  font-size: 11px;
+  opacity: 0.85;
+}
+
+/* Android 4-Column Squircle App Grid */
+.android-app-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px 12px;
+  padding: 8px 0;
+}
+
+.android-app-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.android-app-tile:active {
+  transform: scale(0.92);
+}
+
+.app-icon-squircle {
+  width: 58px;
+  height: 58px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.app-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  letter-spacing: 0.2px;
+}
+
+/* Vibrant App Background Gradients */
+.msn-bg { background: linear-gradient(135deg, #00a8ff, #0055ff); }
+.cam-bg { background: linear-gradient(135deg, #ff1493, #ff69b4); }
+.poetry-bg { background: linear-gradient(135deg, #9900cc, #ff1493); }
+.gallery-bg { background: linear-gradient(135deg, #ff69b4, #ff85c0); }
+.mail-bg { background: linear-gradient(135deg, #ff4757, #ff6b81); }
+.paint-bg { background: linear-gradient(135deg, #2ed573, #1e90ff); }
+.racer-bg { background: linear-gradient(135deg, #ffa500, #ff4500); }
+.sweeper-bg { background: linear-gradient(135deg, #a55eea, #4b7bec); }
+.settings-bg { background: linear-gradient(135deg, #57606f, #2f3542); }
+.docs-bg { background: linear-gradient(135deg, #eccc68, #ffa500); }
+.museum-bg { background: linear-gradient(135deg, #8e44ad, #fd79a8); }
+.trash-bg { background: linear-gradient(135deg, #747d8c, #a4b0be); }
+
+/* Quick Settings Panel */
+.android-quick-settings-panel {
+  position: absolute;
+  top: 32px;
+  left: 0;
+  width: 100vw;
+  background: rgba(20, 15, 30, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 2px solid #ff1493;
+  padding: 16px;
+  box-sizing: border-box;
+  z-index: 99999;
+  color: #fff;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.quick-settings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 14px;
+  color: #ff85c0;
+}
+
+.quick-settings-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.qs-tile {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #fff;
+  cursor: pointer;
+}
+
+.qs-tile.active {
+  background: linear-gradient(135deg, #ff1493, #ff69b4);
+  border-color: #ff69b4;
+}
+
+.qs-tile span {
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.qs-tile small {
+  font-size: 10px;
+  opacity: 0.8;
+  margin-top: 2px;
+}
+
+.qs-notification-box {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 10px 12px;
+  border-left: 3px solid #ff1493;
+}
+
+.qs-notif-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #ff69b4;
+}
+
+.qs-notif-body {
+  font-size: 12px;
+  margin-top: 2px;
+  font-style: italic;
+  color: #eee;
+}
+
+/* Android Bottom Gesture Bar Pill */
+.android-gesture-home-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999;
+  cursor: pointer;
+}
+
+.gesture-pill {
+  width: 120px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 4px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  transition: width 0.15s ease, background 0.15s ease;
+}
+
+.android-gesture-home-bar:active .gesture-pill {
+  width: 140px;
+  background: #ff1493;
+}
+
+/* Android System Bottom 3-Button Navigation Bar (Always Visible) */
+.android-system-nav-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 44px;
+  background: rgba(10, 5, 18, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 999999999 !important;
+  border-top: 1px solid rgba(255, 105, 180, 0.3);
+  box-sizing: border-box;
+  padding: 0 20px;
+}
+
+.android-nav-btn {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 16px;
+  width: 60px;
+  height: 36px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.android-nav-btn:active {
+  background: rgba(255, 105, 180, 0.4);
+  transform: scale(0.88);
+}
+
+.home-pill-btn {
+  font-size: 20px;
+  color: #ff69b4;
+}
+
+
+
+
+
+

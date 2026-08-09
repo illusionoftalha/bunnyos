@@ -1,0 +1,104 @@
+.poetry-section {
+  padding: 10rem 2rem 15rem 2rem;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  background: transparent;
+}
+
+.poetry-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1000px;
+  width: 100%;
+  gap: 12rem;
+}
+
+.poetry-card-wrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+/* Asymmetric Alignment */
+.card-0 {
+  justify-content: flex-start;
+}
+.card-1 {
+  justify-content: flex-end;
+  margin-top: -4rem;
+}
+.card-2 {
+  justify-content: center;
+}
+
+.massive-quote {
+  position: absolute;
+  font-size: 20rem;
+  color: rgba(255, 115, 195, 0.15); /* Faint, elegant pink */
+  line-height: 0;
+  top: 5rem;
+  left: -2rem;
+  z-index: -1;
+  user-select: none;
+}
+
+.card-1 .massive-quote {
+  left: auto;
+  right: -2rem;
+}
+
+.poetry-card {
+  max-width: 600px;
+  padding: 4rem;
+  border-radius: 20px;
+  /* Relying on the .glass-panel utility class from Hero for styling */
+}
+
+.poetry-verse {
+  font-size: 2rem;
+  line-height: 1.6;
+  color: #333;
+  font-style: italic;
+  letter-spacing: 0.5px;
+}
+
+.poetry-signature-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 8rem;
+}
+
+.signature-line {
+  width: 2px;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, var(--color-deep-pink));
+  margin-bottom: 2rem;
+}
+
+.poetry-signature {
+  font-size: 1.8rem;
+  color: var(--color-deep-pink);
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .poetry-verse {
+    font-size: 1.5rem;
+  }
+  .poetry-card {
+    padding: 2rem;
+  }
+  .massive-quote {
+    font-size: 12rem;
+    top: 3rem;
+  }
+  .poetry-container {
+    gap: 6rem;
+  }
+}

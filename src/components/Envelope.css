@@ -1,0 +1,108 @@
+.envelope-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--color-misty-rose);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.envelope-container {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.envelope-container:hover {
+  transform: scale(1.05);
+}
+
+.envelope-body {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: var(--color-lavender-pink);
+  border-radius: 10px;
+  box-shadow: 0 20px 40px rgba(255, 115, 195, 0.3);
+}
+
+.envelope-front {
+  position: absolute;
+  bottom: 0; left: 0; width: 100%; height: 70%;
+  background: var(--color-persian-pink);
+  border-radius: 0 0 10px 10px;
+  clip-path: polygon(0 100%, 100% 100%, 100% 0, 50% 30%, 0 0);
+  z-index: 3;
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 60%;
+  background: var(--color-deep-pink);
+  border-radius: 10px 10px 0 0;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  z-index: 4;
+  transform-origin: top;
+  transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.envelope-container.open .envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+.envelope-seal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -10%);
+  width: 50px;
+  height: 50px;
+  background: var(--color-persian-rose);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  transition: opacity 0.5s ease;
+}
+
+.envelope-container.open .envelope-seal {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.envelope-letter {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  background: white;
+  border-radius: 5px;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-secondary);
+  font-weight: 700;
+  color: var(--color-deep-pink);
+  font-size: 1.2rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.envelope-hint {
+  margin-top: 4rem;
+  font-family: var(--font-secondary);
+  color: var(--color-persian-pink);
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
