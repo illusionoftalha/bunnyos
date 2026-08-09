@@ -32,13 +32,14 @@ jobs:
         run: |
           cd ios/App
           echo "=== Step 1: Resolving SPM Dependencies ==="
-          xcodebuild -resolvePackageDependencies -project App.xcodeproj
+          xcodebuild -resolvePackageDependencies -project App.xcodeproj -scheme App
 
           echo "=== Step 2: Compiling App.xcodeproj ==="
           xcodebuild -project App.xcodeproj \
                      -scheme App \
                      -configuration Release \
                      -sdk iphonesimulator \
+                     -destination 'generic/platform=iOS Simulator' \
                      -derivedDataPath build \
                      -skipPackagePluginValidation \
                      CODE_SIGNING_ALLOWED=NO \
@@ -48,7 +49,7 @@ jobs:
 
           echo "=== Step 3: Packaging IPA ==="
           mkdir -p ../../Payload
-          find build -name "*.app" -exec cp -r {} ../../Payload/ \;
+          cp -r build/Build/Products/Release-iphonesimulator/App.app ../../Payload/
           cd ../..
           ls -la Payload/
           zip -r BunnyOS-iOS.ipa Payload
