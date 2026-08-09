@@ -22,34 +22,30 @@ jobs:
       - name: Install Dependencies
         run: npm install --legacy-peer-deps
 
-      - name: Build Production Web Bundle
-        run: npm run build
-
-      - name: Sync Capacitor iOS Platform
+      - name: Build Web Bundle & Sync iOS
         run: |
+          npm run build
           npx cap add ios || true
           npx cap sync ios
 
-      - name: Build iOS App with xcodebuild
+      - name: Compile iOS App & Package IPA
         run: |
           cd ios/App
           xcodebuild -project App.xcodeproj \
                      -scheme App \
                      -configuration Release \
                      -sdk iphonesimulator \
+                     -destination 'generic/platform=iOS Simulator' \
                      -derivedDataPath build \
                      -skipPackagePluginValidation \
+                     CODE_SIGNING_ALLOWED=NO \
                      CODE_SIGN_IDENTITY="" \
                      CODE_SIGNING_REQUIRED=NO \
-                     CODE_SIGNING_ALLOWED=NO \
                      clean build
 
-      - name: Create Unsigned IPA Package
-        run: |
-          mkdir -p Payload
-          APP_PATH=$(find ios/App/build/Build/Products -name "*.app" | head -n 1)
-          echo "Found compiled iOS app bundle at: $APP_PATH"
-          cp -r "$APP_PATH" Payload/
+          mkdir -p ../../Payload
+          find build -name "*.app" -exec cp -r {} ../../Payload/ \;
+          cd ../..
           zip -r BunnyOS-iOS.ipa Payload
 
       - name: Upload iOS IPA Artifact
