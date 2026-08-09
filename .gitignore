@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Build outputs and mobile archives
+*.ipa
+*.zip
+ios_build/
+ios/App/build/
+ios/App/DerivedData/
+

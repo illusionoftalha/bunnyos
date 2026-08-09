@@ -18,9 +18,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'
 
       - name: Install Dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps
 
       - name: Build Production Web Bundle
         run: npm run build
@@ -33,14 +34,23 @@ jobs:
       - name: Build iOS App with xcodebuild
         run: |
           cd ios/App
-          if [ -d "App.xcworkspace" ]; then
-            xcodebuild -workspace App.xcworkspace -scheme App -configuration Release -sdk iphoneos -derivedDataPath build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
-          else
-            xcodebuild -project App.xcodeproj -scheme App -configuration Release -sdk iphoneos -derivedDataPath build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
-          fi
-          cd ../..
+          xcodebuild -project App.xcodeproj \
+                     -scheme App \
+                     -configuration Release \
+                     -sdk iphoneos \
+                     -derivedDataPath build \
+                     -skipPackagePluginValidation \
+                     CODE_SIGN_IDENTITY="" \
+                     CODE_SIGNING_REQUIRED=NO \
+                     CODE_SIGNING_ALLOWED=NO \
+                     clean build
+
+      - name: Create Unsigned IPA Package
+        run: |
           mkdir -p Payload
-          cp -r ios/App/build/Build/Products/Release-iphoneos/App.app Payload/
+          APP_PATH=$(find ios/App/build/Build/Products/Release-iphoneos -name "*.app" | head -n 1)
+          echo "Found app at: $APP_PATH"
+          cp -r "$APP_PATH" Payload/
           zip -r BunnyOS-iOS.ipa Payload
 
       - name: Upload iOS IPA Artifact
