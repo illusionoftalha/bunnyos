@@ -31,11 +31,14 @@ jobs:
       - name: Compile iOS App & Package IPA
         run: |
           cd ios/App
+          echo "=== Step 1: Resolving SPM Dependencies ==="
+          xcodebuild -resolvePackageDependencies -project App.xcodeproj
+
+          echo "=== Step 2: Compiling App.xcodeproj ==="
           xcodebuild -project App.xcodeproj \
                      -scheme App \
                      -configuration Release \
                      -sdk iphonesimulator \
-                     -destination 'generic/platform=iOS Simulator' \
                      -derivedDataPath build \
                      -skipPackagePluginValidation \
                      CODE_SIGNING_ALLOWED=NO \
@@ -43,9 +46,11 @@ jobs:
                      CODE_SIGNING_REQUIRED=NO \
                      clean build
 
+          echo "=== Step 3: Packaging IPA ==="
           mkdir -p ../../Payload
           find build -name "*.app" -exec cp -r {} ../../Payload/ \;
           cd ../..
+          ls -la Payload/
           zip -r BunnyOS-iOS.ipa Payload
 
       - name: Upload iOS IPA Artifact
