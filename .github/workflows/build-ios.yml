@@ -37,7 +37,7 @@ jobs:
         run: |
           cd ios/App
           xcodebuild -project App.xcodeproj \
-                     -scheme App \
+                     -target App \
                      -configuration Release \
                      -sdk iphonesimulator \
                      -derivedDataPath build \
