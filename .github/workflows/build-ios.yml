@@ -17,8 +17,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: 'npm'
+          node-version: 22
 
       - name: Install Dependencies
         run: npm install --legacy-peer-deps
@@ -26,7 +25,7 @@ jobs:
       - name: Build Production Web Bundle
         run: npm run build
 
-      - name: Add and Sync iOS Platform
+      - name: Sync Capacitor iOS Platform
         run: |
           npx cap add ios || true
           npx cap sync ios
@@ -37,7 +36,7 @@ jobs:
           xcodebuild -project App.xcodeproj \
                      -scheme App \
                      -configuration Release \
-                     -sdk iphoneos \
+                     -sdk iphonesimulator \
                      -derivedDataPath build \
                      -skipPackagePluginValidation \
                      CODE_SIGN_IDENTITY="" \
@@ -48,8 +47,8 @@ jobs:
       - name: Create Unsigned IPA Package
         run: |
           mkdir -p Payload
-          APP_PATH=$(find ios/App/build/Build/Products/Release-iphoneos -name "*.app" | head -n 1)
-          echo "Found app at: $APP_PATH"
+          APP_PATH=$(find ios/App/build/Build/Products -name "*.app" | head -n 1)
+          echo "Found compiled iOS app bundle at: $APP_PATH"
           cp -r "$APP_PATH" Payload/
           zip -r BunnyOS-iOS.ipa Payload
 
