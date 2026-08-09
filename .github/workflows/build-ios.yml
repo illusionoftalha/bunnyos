@@ -18,10 +18,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build Production Web Bundle
         run: npm run build
@@ -37,7 +36,7 @@ jobs:
       - name: Build iOS App & Package IPA
         run: |
           cd ios/App
-          xcodebuild -workspace App.xcworkspace \
+          xcodebuild -project App.xcodeproj \
                      -scheme App \
                      -configuration Release \
                      -sdk iphoneos \
