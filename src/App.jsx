@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { lazy, Suspense, useState } from 'react';
 import BunnyOS98 from './components/BunnyOS98';
-import VirtualMuseum from './components/VirtualMuseum';
 import './App.css';
+
+const VirtualMuseum = lazy(() => import('./components/VirtualMuseum'));
 
 const App = () => {
   const [appState, setAppState] = useState('os'); // 'os', 'museum'
@@ -18,7 +19,9 @@ const App = () => {
   return (
     <div style={{ width: '100vw', height: '100vh', overflow: 'hidden', backgroundColor: '#008080' }}>
       {appState === 'museum' ? (
-        <VirtualMuseum onExit={handleExitMuseum} />
+        <Suspense fallback={<div role="status" style={{ padding: 24, color: 'white' }}>Loading museum…</div>}>
+          <VirtualMuseum onExit={handleExitMuseum} />
+        </Suspense>
       ) : (
         <BunnyOS98 
           isOSOpen={isOSOpen} 
